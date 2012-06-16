@@ -55,7 +55,7 @@
 }
 
 - (void)moveItemAtIndex:(int)from
-				toIndex:(int)to;
+				toIndex:(int)to
 {
 	if (from == to) {
 		return;
@@ -68,7 +68,7 @@
 	[allItems removeObjectAtIndex:from];
 
 	// Insert p in array at new location
-	[allItems InsertObject:p atIndex:to];
+	[allItems insertObject:p atIndex:to];
 }
 
 
