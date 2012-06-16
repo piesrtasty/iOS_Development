@@ -116,7 +116,17 @@
 	commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 		forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	
+	// If the table view is asking to commit a delete command...
+	if (editingStyle == UITableViewCellEditingStyleDelete) {
+		BNRItemStore *ps = [BNRItemStore sharedStore];
+		NSArray *items = [ps allItems];
+		BNRItem *p = [items objectAtIndex:[indexPath row]];
+		[ps removeItem:p];
+
+		// We also remove that row from the table view with an animation
+		[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+						 withRowAnimation:UITableViewRowAnimationFade];
+	}
 }
 
 
