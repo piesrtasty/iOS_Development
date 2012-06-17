@@ -137,10 +137,28 @@
 										toIndex:[destinationIndexPath row]];
 }		   
 
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+	[[self view] setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+}
 
+- (void3)tableView:(UITableView *)aTableView
+	didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	DetailViewController *detailViewController = [[DetailViewController alloc] init];
 
+	NSArray *items = [[BNRItemStore sharedStore] allItems];
+	BNRItem *selectedItem = [items objectAtIndex:[indexPath row]];
 
+	// Give detail view controller a pointer to the item object in row
+	[detailViewController setItem:selectedItem];
 
+	// Push it onto the top of the navigation controller's stack
+	[[self navigationController] pushViewController:detailViewController
+										   animated:YES];	
+
+}
 
 
 

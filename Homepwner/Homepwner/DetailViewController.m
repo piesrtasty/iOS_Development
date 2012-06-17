@@ -7,38 +7,36 @@
 //
 
 #import "DetailViewController.h"
-
-@interface DetailViewController ()
-
-@end
+#import "BNRItem.h"
 
 @implementation DetailViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+@synthesize item;
+
+- (void)viewDidUnload {
+  nameField = nil;
+  serialNumberField = nil;
+  valueField = nil;
+  dateLabel = nil;
+  [super viewDidUnload];
 }
 
-- (void)viewDidLoad
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
+	[super viewWillAppear:animated];
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
+	[nameField setText:[item itemName]];
+	[serialNumberField setText:[item serialNumber]];
+	[valueField setText:[NSString stringWithFormat:@"%d", [item valueInDollars]]];
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+	// Create a NSDateFormatter that will turn a date into a simple date string
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+	[dateFormatter setDateStyle:NSDateFormatterNoStyle];
+
+	// Use filtered NSDate object to set dateLabel contents
+	[dateLabel setText:[dateFormatter stringFromDate:[item dateCreated]]];
+
 }
 
 @end
