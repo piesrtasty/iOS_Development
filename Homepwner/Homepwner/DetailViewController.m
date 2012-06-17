@@ -39,4 +39,45 @@
 
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[super viewWillDisappear:animated];
+
+	// Clear first responder
+	[[self view] endEditing:YES];
+
+	// "Save" changes to item
+	[item setItemName:[nameField text]];
+	[item setSerialNumber:[serialNumberField text]];
+	[item setValueInDollars:[[valueField text] intValue]];
+
+}
+
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

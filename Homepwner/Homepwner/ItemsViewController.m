@@ -143,7 +143,7 @@
 	[[self view] setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
 }
 
-- (void3)tableView:(UITableView *)aTableView
+- (void)tableView:(UITableView *)aTableView
 	didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	DetailViewController *detailViewController = [[DetailViewController alloc] init];
@@ -158,6 +158,12 @@
 	[[self navigationController] pushViewController:detailViewController
 										   animated:YES];	
 
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	[[self tableView] reloadData];
 }
 
 
