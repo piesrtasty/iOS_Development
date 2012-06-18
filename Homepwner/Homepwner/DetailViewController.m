@@ -157,6 +157,15 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 	[[self view] endEditing:YES];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)io
+{
+	if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+		return YES;
+	} else {
+		return (io == UIInterfaceOrientationPortrait);
+	}
+}
+
 @end
 
 
